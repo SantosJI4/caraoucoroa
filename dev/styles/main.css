@@ -1,0 +1,358 @@
+body {
+  background: #2c3e50;
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+header {
+  margin-bottom: 30px;
+}
+header h1 {
+  font-family: "Lobster", cursive;
+  font-size: 3em;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: titleEnter 1s ease-out;
+}
+.player-section {
+  max-width: 500px;
+  margin: 0 auto 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+.player-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+.player-section .input-group {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.player-section .input-group label {
+  font-size: 1.2em;
+  color: #ffffff;
+  min-width: 100px;
+  text-align: right;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.player-section .input-group input {
+  padding: 12px 20px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font-size: 1.1em;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2c3e50;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+.player-section .input-group input:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  transform: translateY(-2px);
+}
+.player-section .input-group input::placeholder {
+  color: rgba(44, 62, 80, 0.5);
+}
+.player-section .input-group input:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+}
+#coinButton {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ffd700, #b39700);
+  color: #4d4100;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+#coinButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.5s;
+}
+#coinButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+}
+#coinButton:hover::before {
+  left: 100%;
+}
+#coinButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+#coinButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+#coin {
+  width: 150px;
+  height: 150px;
+  margin: 30px auto;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  cursor: pointer;
+  will-change: transform;
+  perspective: 1000px;
+}
+.side-a,
+.side-b {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffd700, #b39700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #806c00;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-family: "Lobster", cursive;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.side-a .coin-text,
+.side-b .coin-text {
+  z-index: 2;
+  transform: rotateY(0);
+}
+.side-a .coin-circle,
+.side-b .coin-circle {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 2px solid #998100;
+  z-index: 1;
+}
+.side-a::after,
+.side-b::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 70% 70%, transparent, rgba(0, 0, 0, 0.2));
+  z-index: 3;
+}
+.side-a {
+  transform: rotateY(0);
+}
+.side-a .coin-text {
+  content: "CARA";
+}
+.side-b {
+  transform: rotateY(180deg);
+}
+.side-b .coin-text {
+  content: "COROA";
+  transform: rotateY(180deg);
+}
+.flip {
+  animation: coinFlip 2s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+@keyframes coinFlip {
+  0% {
+    transform: translateY(0) rotateY(0);
+  }
+  25% {
+    transform: translateY(-200px) rotateY(900deg);
+  }
+  50% {
+    transform: translateY(-300px) rotateY(1800deg);
+  }
+  75% {
+    transform: translateY(-200px) rotateY(2700deg);
+  }
+  100% {
+    transform: translateY(0) rotateY(3600deg);
+  }
+}
+.show-cara {
+  transform: rotateY(0deg) !important;
+}
+.show-coroa {
+  transform: rotateY(180deg) !important;
+}
+.scoreboard {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+.scoreboard .score-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.scoreboard .score-list .score-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.scoreboard .score-list .score-item .profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid #ffd700;
+  overflow: hidden;
+}
+.scoreboard .score-list .score-item .profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.scoreboard .score-list .score-item .player-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.scoreboard .score-list .score-item .player-info .score-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.scoreboard .score-list .score-item .player-info .score-info .score {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ffd700;
+}
+.scoreboard .score-list .score-item .player-info .score-info .streak-badge {
+  background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.9em;
+  animation: bounce 0.5s infinite alternate;
+}
+.scoreboard .score-list .score-item .player-info .score-info .streak-badge.hidden {
+  display: none;
+}
+.scoreboard .score-list .score-item .player-info .score-info .streak-badge.streak-reset {
+  animation: streakReset 0.5s ease-out forwards;
+}
+.scoreboard .score-list .score-item .player-info .score-info .streak-badge.streak-increment {
+  animation: streakIncrement 0.5s ease-out;
+}
+.scoreboard .score-list .score-item.hot-streak {
+  background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
+  animation: pulse 1s infinite;
+}
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+@keyframes streakReset {
+  0% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: scale(0) rotate(-20deg);
+    opacity: 0;
+  }
+}
+@keyframes streakIncrement {
+  0% {
+    transform: scale(0.5) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+@media (max-width: 768px) {
+  .player-section .input-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .player-section .input-group label {
+    text-align: left;
+    min-width: auto;
+  }
+  .player-section .input-group input {
+    width: 100%;
+  }
+  #coin {
+    width: 120px;
+    height: 120px;
+  }
+  .scoreboard {
+    padding: 15px;
+  }
+  .scoreboard .score-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .scoreboard .score-item .profile-pic {
+    margin-bottom: 10px;
+  }
+  .scoreboard .score-item .player-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 2em;
+  }
+  #coinButton {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+  .scoreboard .score-item {
+    padding: 10px;
+  }
+}

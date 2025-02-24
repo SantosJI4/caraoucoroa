@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cara ou Coroa - Jogo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../dev/styles/main.css" />
+    <link
+      rel="icon"
+      href="https://files.passeidireto.com/5c073df5-cc66-4206-9cd6-97e46ece657f/5c073df5-cc66-4206-9cd6-97e46ece657f.png"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Cara ou Coroa</h1>
+    </header>
+
+    <main>
+      <section class="player-section">
+        <div class="input-group">
+          <label for="player1">Jogador 1:</label>
+          <input
+            type="text"
+            id="player1"
+            placeholder="Digite seu nome"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="player2">Jogador 2:</label>
+          <input
+            type="text"
+            id="player2"
+            placeholder="Digite seu nome"
+            required
+          />
+        </div>
+      </section>
+
+      <button id="coinButton">Jogar Moeda</button>
+
+      <div id="coin">
+        <div class="side-a">
+          <div class="coin-face">
+            <span class="coin-text">CARA</span>
+            <div class="coin-circle"></div>
+          </div>
+        </div>
+        <div class="side-b">
+          <div class="coin-face">
+            <span class="coin-text">COROA</span>
+            <div class="coin-circle"></div>
+          </div>
+        </div>
+      </div>
+
+      <p id="result"></p>
+
+      <section class="scoreboard">
+        <h2>Placar</h2>
+        <ul class="score-list" id="scoreList">
+          <li class="score-item">
+            <div class="profile-pic">
+              <img
+                src="https://api.dicebear.com/7.x/adventurer/svg?seed=player1"
+                alt="Player 1"
+              />
+            </div>
+            <div class="player-info">
+              <span class="player-name">Jogador 1</span>
+              <div class="score-info">
+                <span class="score">0</span>
+                <span class="streak-badge hidden">🔥 0x</span>
+              </div>
+            </div>
+          </li>
+          <li class="score-item">
+            <div class="profile-pic">
+              <img
+                src="https://api.dicebear.com/7.x/adventurer/svg?seed=player2"
+                alt="Player 2"
+              />
+            </div>
+            <div class="player-info">
+              <span class="player-name">Jogador 2</span>
+              <div class="score-info">
+                <span class="score">0</span>
+                <span class="streak-badge hidden">🔥 0x</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>
