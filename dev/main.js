@@ -146,28 +146,4 @@ document.addEventListener("DOMContentLoaded", function () {
     sound.load();
     sound.volume = 0.5;
   });
-
-  const modal = document.getElementById("welcomeModal");
-  const closeButton = document.querySelector(".close-button");
-
-  function openModal() {
-    modal.style.display = "block";
-  }
-
-  function closeModal() {
-    modal.style.display = "none";
-  }
-
-  closeButton.addEventListener("click", closeModal);
-
-  window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      closeModal();
-    }
-  });
-
-  if (!localStorage.getItem("visited")) {
-    openModal();
-    localStorage.setItem("visited", "true");
-  }
 });
